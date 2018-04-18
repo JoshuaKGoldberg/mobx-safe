@@ -1,0 +1,50 @@
+{
+  "name": "mobx-safe",
+  "version": "1.0.0",
+  "description": "Drop-in `action` replacement for MobX that stores errors instead of throwing.",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "src": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshuakgoldberg/mobx-safe.git"
+  },
+  "keywords": [
+    "mobx",
+    "safe",
+    "error",
+    "handling"
+  ],
+  "author": "Josh Goldberg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshuakgoldberg/mobx-safe/issues"
+  },
+  "homepage": "https://github.com/joshuakgoldberg/mobx-safe#readme",
+  "dependencies": {
+    "mobx": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.3",
+    "jest": "^22.4.3",
+    "ts-jest": "^22.4.3",
+    "typescript": "^2.8.1"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
