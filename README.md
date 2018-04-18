@@ -106,7 +106,7 @@ If passed with `clearOnCaughtErrorHandlers`, only the added `onCaughtError` will
 Multiple tests that interact with `mobx-safe` can leave with multiple `onCaughtError` handlers active.
 Clear state after each test with `configure.clearOnCaughtErrorHandlers`.
 
-For example, in Jest and other test frameworks with `afterAll`:
+For example, in Jest and other test frameworks with `afterEach`:
 
 ```typescript
 afterEach(() => {
