@@ -109,7 +109,6 @@ describe("action", () => {
                 @action
                 public receiveError(error: Error) {
                     this.error = error;
-                    throw error;
                 }
             }
 
@@ -158,5 +157,4 @@ describe("action", () => {
             expect(caughtErrors).toEqual([error]);
         });
     });
-
 });
