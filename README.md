@@ -16,8 +16,8 @@ class DangerZone {
     }
 }
 
-new DangerZone.enter();
-console.log(caughtErrors); // [Error: Lana!]
+setTimeout(() => new DangerZone().enter(), 100);
+setTimeout(() => console.log(caughtErrors), 200); // [Error: Lana!]
 ```
 
 ## Why
