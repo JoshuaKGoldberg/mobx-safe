@@ -1,3 +1,5 @@
+import { observable } from "mobx";
+
 import { action } from "./action";
 import { caughtErrors } from "./errors";
 
@@ -96,6 +98,28 @@ describe("action", () => {
             // Assert
             expect(caughtErrors).toEqual([error]);
         });
+
+        it("allows setting observable errors on the target", () => {
+            // Arrange
+            const error = new Error();
+            class Source {
+                @observable
+                public error: Error | undefined;
+
+                @action
+                public receiveError(error: Error) {
+                    this.error = error;
+                }
+            }
+
+            const source = new Source();
+
+            // Act
+            source.receiveError(error);
+
+            // Assert
+            expect(source.error).toBe(error);
+        });
     });
 
     describe(`@action("name")`, () => {
@@ -133,5 +157,4 @@ describe("action", () => {
             expect(caughtErrors).toEqual([error]);
         });
     });
-
 });

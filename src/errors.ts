@@ -7,7 +7,7 @@ export const caughtErrors: IObservableArray<Error> = observable([]);
 export function wrapMethodSafely(method: Function): Function {
     return function () {
         try {
-            return method.call(this, arguments);
+            return method.apply(this, arguments);
         } catch (error) {
             caughtErrors.push(error);
 
