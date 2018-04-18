@@ -1,6 +1,6 @@
 {
   "name": "mobx-safe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Drop-in `action` replacement for MobX that stores errors instead of throwing.",
   "main": "src/index.js",
   "types": "src/index.d.ts",
