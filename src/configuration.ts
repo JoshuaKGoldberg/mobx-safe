@@ -9,6 +9,7 @@ export const configuration: StoredConfiguration = {
 };
 
 export interface ConfigurationOptions {
+    clearOnCaughtErrorHandlers?: boolean;
     onCaughtError?: OnCaughtErrorHandler;
 }
 
@@ -18,6 +19,10 @@ export interface ConfigurationOptions {
  * @param options   Options to add to the existing configuration.
  */
 export const configure = (options: ConfigurationOptions): void => {
+    if (options.clearOnCaughtErrorHandlers) {
+        configuration.onCaughtErrorHandlers.length = 0;
+    }
+
     if (options.onCaughtError !== undefined) {
         configuration.onCaughtErrorHandlers.push(options.onCaughtError);
     }

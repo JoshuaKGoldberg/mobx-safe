@@ -18,7 +18,9 @@ describe("configuration", () => {
             configure({ onCaughtError });
 
             // Act
-            wrapped();
+            try {
+                wrapped();
+            } catch { }
 
             // Assert
             expect(onCaughtError).toHaveBeenLastCalledWith(error);
@@ -41,7 +43,9 @@ describe("configuration", () => {
             }
 
             // Act
-            wrapped();
+            try {
+                wrapped();
+            } catch { }
 
             // Assert
             for (const onCaughtError of onCaughtErrors) {

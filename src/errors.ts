@@ -14,6 +14,8 @@ export function wrapMethodSafely(method: Function): Function {
             for (const onCaughtError of configuration.onCaughtErrorHandlers) {
                 onCaughtError(error);
             }
+
+            throw error;
         }
     };
 };

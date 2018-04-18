@@ -21,50 +21,62 @@ describe("action", () => {
             expect(expected).toEqual(actual);
         });
 
-        it("catches an error", () => {
+        it("catches an error when one is thrown by the action", () => {
             // Arrange
-            const error = new Error();
+            const error = new Error("test")
             const wrapped = action((): void => {
                 throw error;
             });
 
             // Act
-            wrapped();
+            try {
+                wrapped();
+            } catch { }
 
             // Assert
             expect(caughtErrors).toEqual([error]);
         });
-    });
 
-    describe(`action("name", fn() {})`, () => {
-        it("returns a value", () => {
+        it("rethrows an error when one is thrown by the action", () => {
             // Arrange
-            const expected = {};
-            const wrapped = action("name", () => expected);
-
-            // Act
-            const actual = wrapped();
-
-            // Assert
-            expect(expected).toEqual(actual);
-        });
-
-        it("catches an error", () => {
-            // Arrange
-            const error = new Error();
+            const error = new Error("test");
             const wrapped = action((): void => {
                 throw error;
             });
 
+            // Assert
+            expect(action).toThrowError(error.message);
+        });
+
+        it("catches an error when one is thrown by the action", () => {
+            // Arrange
+            const error = new Error("test")
+            const wrapped = action("name", (): void => {
+                throw error;
+            });
+
             // Act
-            wrapped();
+            try {
+                wrapped();
+            } catch { }
 
             // Assert
             expect(caughtErrors).toEqual([error]);
         });
+
+        it("rethrows an error when one is thrown by the action", () => {
+            // Arrange
+            const error = new Error("test");
+            const wrapped = action("name", (): void => {
+                throw error;
+            });
+
+            // Assert
+            expect(wrapped).toThrow(error.message);
+        });
     });
 
-    describe(`@action`, () => {
+    describe.only(`@action`, () => {
         it("returns a value", () => {
             // Arrange
             const expected = {};
@@ -82,9 +94,9 @@ describe("action", () => {
             expect(expected).toEqual(actual);
         });
 
-        it("catches an error", () => {
+        it("catches an error when one is thrown by the action", () => {
             // Arrange
-            const error = new Error();
+            const error = new Error("test")
             class Source {
                 @action
                 public act() {
@@ -93,15 +105,34 @@ describe("action", () => {
             }
 
             // Act
-            new Source().act();
+            try {
+                new Source().act();
+            } catch { }
 
             // Assert
             expect(caughtErrors).toEqual([error]);
         });
 
+        it("rethrows an error when one is thrown by the action", () => {
+            // Arrange
+            const error = new Error("test")
+            class Source {
+                @action
+                public act() {
+                    throw error;
+                }
+            }
+
+            // Act
+            const act = () => new Source().act();
+
+            // Assert
+            expect(act).toThrowError(error.message);
+        });
+
         it("allows setting observable errors on the target", () => {
             // Arrange
-            const error = new Error();
+            const error = new Error("test")
             class Source {
                 @observable
                 public error: Error | undefined;
@@ -142,7 +173,7 @@ describe("action", () => {
 
         it("catches an error", () => {
             // Arrange
-            const error = new Error();
+            const error = new Error("test")
             class Source {
                 @action("name")
                 public act() {
