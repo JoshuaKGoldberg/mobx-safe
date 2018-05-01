@@ -4,7 +4,7 @@ node_js:
   - "node"
 
 script:
-  npm run src
+  npm i mobx --no-save && npm run src
 
 # Recommended workaround for https://github.com/travis-ci/travis-ci/issues/8836
 sudo: required

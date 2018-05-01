@@ -3,11 +3,12 @@
         "declaration": true,
         "experimentalDecorators": true,
         "forceConsistentCasingInFileNames": true,
+        "lib": ["es2015"],
         "module": "commonjs",
         "moduleResolution": "node",
         "noFallthroughCasesInSwitch": true,
         "pretty": true,
-        "target": "es2015"
+        "target": "es5"
     },
     "exclude": [
         "node_modules"
